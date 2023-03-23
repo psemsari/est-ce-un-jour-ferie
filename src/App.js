@@ -16,52 +16,31 @@ function IsFerie(dates)
 {
   const actual = useState(new Date())[0]
   const day = compare(dates, actual)
-  console.log(day)
   if (day)
-  {
-    return (
-      <span>
-        {day}
-      </span>
-    );
-  }
-  return (
-    <span>
-      NON
-    </span>
-  );
+    return (<>🎉{day}🎉</>);
+  return (<>NON</>);
 }
 
 function App() {
   const [data, setData] = useState({});
   useEffect(() => {
-
     const datafetch = async () => {
       const response = await fetch("https://calendrier.api.gouv.fr/jours-feries/metropole/2023.json")
       const json = await response.json()
       setData(json)
     }
-
     datafetch()
   }, []);
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src="Octocat.png" className="App-logo" alt="logo" />
-        <p>
-          Est ce un jour ferie ?
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://calendrier.api.gouv.fr/jours-feries/metropole/2023.json"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+        <h2>
+          Est ce un jour férié ?
+        </h2>
+        <h1>
           <IsFerie dates={data}></IsFerie>
-          </a>
-        </p>
+        </h1>
       </header>
     </div>
   );
