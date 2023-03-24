@@ -3,26 +3,38 @@ import './App.css';
 
 function compare(dates, actual) {
   const comp = actual.toISOString().slice(0, 10)
-  const lst = dates.dates
-  for (let day in lst)
+  for (let day in dates)
   {
     if (day === comp)
-      return lst[day]
+      return {day: dates[day]}
   }
-  return null
+  return {day: null}
 }
 
-function IsFerie(dates)
-{
-  const actual = useState(new Date())[0]
-  const day = compare(dates, actual)
-  if (day)
-    return (<>🎉{day}🎉</>);
-  return (<>NON</>);
+const IsFerie = ({day}) => {
+  if (day.day)
+    return <>🎉{day.day}🎉</>
+  return <>NON</>
+}
+
+const Header = ({day}) => {
+  return (
+    <header className={"App-header " + (day.day ? 'isFerie' : '')}>
+      <h2>
+        Est ce un jour férié ?
+      </h2>
+      <h1>
+        <IsFerie day={day}></IsFerie>
+      </h1>
+    </header>
+  )
 }
 
 function App() {
   const [data, setData] = useState({});
+
+  const actual = useState(new Date())[0]
+
   useEffect(() => {
     const datafetch = async () => {
       const response = await fetch("https://calendrier.api.gouv.fr/jours-feries/metropole/2023.json")
@@ -32,30 +44,13 @@ function App() {
     datafetch()
   }, []);
 
+  const day = compare(data, actual)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <h2>
-          Est ce un jour férié ?
-        </h2>
-        <h1>
-          <IsFerie dates={data}></IsFerie>
-        </h1>
-      </header>
+      <Header day={day}></Header>
     </div>
   );
 }
-
-// const DATE = {"2023-01-01": "1er janvier",
-//               "2023-04-10": "Lundi de Pâques",
-//               "2023-05-01": "1er mai",
-//               "2023-05-08": "8 mai",
-//               "2023-05-18": "Ascension",
-//               "2023-05-29": "Lundi de Pentecôte",
-//               "2023-07-14": "14 juillet",
-//               "2023-08-15": "Assomption",
-//               "2023-11-01": "Toussaint",
-//               "2023-11-11": "11 novembre",
-//               "2023-12-25": "Jour de Noël"}
 
 export default App;

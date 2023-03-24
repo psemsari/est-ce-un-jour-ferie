@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 .App-header {
   background-color: #9c0000;
   min-height: 100vh;
@@ -18,14 +13,6 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-.heart {
-  color: #ff0000;
-}
-
-.small {
-  font-size: 0.75rem;
+.isFerie {
+  background-color: #009c1f !important;
 }
