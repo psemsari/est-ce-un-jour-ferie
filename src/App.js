@@ -1,5 +1,6 @@
 import { useEffect, useState} from 'react';
 import './App.css';
+import Anim from './Anim';
 
 function compare(dates, actual) {
   const comp = actual.toISOString().slice(0, 10)
@@ -17,15 +18,43 @@ const IsFerie = ({day}) => {
   return <>NON</>
 }
 
-const Header = ({day}) => {
+const Canva = () => {
+  useEffect(() => {
+    Anim()
+  }, [])
+  
   return (
-    <header className={"App-header " + (day.day ? 'isFerie' : '')}>
-      <h2>
-        Est ce un jour férié ?
-      </h2>
-      <h1>
-        <IsFerie day={day}></IsFerie>
-      </h1>
+    <canvas id="c"></canvas>
+  )
+}
+
+const Header = ({day}) => {
+
+  if (day.day)
+    return (
+      <header className="App-header isFerie">
+        <Canva></Canva>
+        <div id="text">
+          <h2>
+            Est ce un jour férié ?
+          </h2>
+          <h1>
+            <IsFerie day={day}></IsFerie>
+          </h1>
+        </div>
+      </header>
+    )
+
+  return (
+    <header className="App-header">
+      <div id="text">
+        <h2>
+          Est ce un jour férié ?
+        </h2>
+        <h1>
+          <IsFerie day={day}></IsFerie>
+        </h1>
+      </div>
     </header>
   )
 }
@@ -45,6 +74,8 @@ function App() {
   }, []);
 
   const day = compare(data, actual)
+
+  if (data === {}) return (<></>)
 
   return (
     <div className="App">

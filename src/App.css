@@ -11,8 +11,22 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  z-index: -1;
 }
 
 .isFerie {
   background-color: #009c1f !important;
+}
+
+#c {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+#text {
+  z-index: 1;
 }
