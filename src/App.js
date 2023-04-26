@@ -3,11 +3,12 @@ import './App.css';
 import Anim from './Anim';
 
 function compare(dates, actual) {
-  const comp = actual.toISOString().slice(0, 10)
   for (let day in dates)
   {
-    if (day === comp)
-      return {day: dates[day]}
+    const date = new Date(day)
+    if (date === actual)
+    return {day: dates[day]}
+    return {day: dates[day]}
   }
   return {day: null}
 }
