@@ -6,8 +6,9 @@ function Anim() {
     renderOnAddRemove: false,
     selection: false
     });
-    canvas.setHeight(document.body.clientHeight);
-    canvas.setWidth(document.body.clientWidth);
+    const appheader = document.getElementsByClassName('App-header')[0]
+    canvas.setHeight(appheader.offsetHeight);
+    canvas.setWidth(appheader.offsetWidth);
     fabric.Object.prototype.transparentCorners = false;
     fabric.Object.prototype.objectCaching = true;
 
@@ -32,7 +33,7 @@ function Anim() {
     fabric.loadSVGFromURL('https://api.iconify.design/fluent-emoji/party-popper.svg', function(objects, options) {
         var obj = fabric.util.groupSVGElements(objects, options);
 
-        for (let i = 0; i < 300; i++)
+        for (let i = 0; i < 100; i++)
         {
         obj.clone((clone) => {
             clone.scale = Math.ceil(Math.random() * 3) + 5
@@ -48,6 +49,12 @@ function Anim() {
         }
         update()
     });
+
+    window.onresize = () => {
+        const appheader = document.getElementsByClassName('App-header')[0]
+        canvas.setHeight(appheader.offsetHeight);
+        canvas.setWidth(appheader.offsetWidth);
+    }
 
 }
 
