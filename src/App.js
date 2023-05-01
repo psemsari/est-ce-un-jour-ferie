@@ -7,8 +7,7 @@ function compare(dates, actual) {
   {
     const date = new Date(day)
     if (date === actual)
-    return {day: dates[day]}
-    return {day: dates[day]}
+      return {day: dates[day]}
   }
   return {day: null}
 }
@@ -34,7 +33,23 @@ const Header = ({day}) => {
   if (day.day)
     return (
       <header className="App-header isFerie">
+        <div id="block">
+          <div id="text">
+            <h2>
+              Est ce un jour férié ?
+            </h2>
+            <h1>
+              <IsFerie day={day}></IsFerie>
+            </h1>
+          </div>
+        </div>
         <Canva></Canva>
+      </header>
+    )
+
+  return (
+    <header className="App-header">
+      <div id="block">
         <div id="text">
           <h2>
             Est ce un jour férié ?
@@ -43,18 +58,6 @@ const Header = ({day}) => {
             <IsFerie day={day}></IsFerie>
           </h1>
         </div>
-      </header>
-    )
-
-  return (
-    <header className="App-header">
-      <div id="text">
-        <h2>
-          Est ce un jour férié ?
-        </h2>
-        <h1>
-          <IsFerie day={day}></IsFerie>
-        </h1>
       </div>
     </header>
   )
