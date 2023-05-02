@@ -2,11 +2,18 @@ import { useEffect, useState} from 'react';
 import './App.css';
 import Anim from './Anim';
 
-function compare(dates, actual) {
+function compareDateAndMonth (date, actual) {
+  if (date.getDate() === actual.getDate()
+      && date.getMonth() === actual.getMonth())
+      return 1
+  return 0
+}
+
+function getDay(dates, actual) {
   for (let day in dates)
   {
     const date = new Date(day)
-    if (date === actual)
+    if (compareDateAndMonth(date, actual))
       return {day: dates[day]}
   }
   return {day: null}
@@ -77,7 +84,7 @@ function App() {
     datafetch()
   }, []);
 
-  const day = compare(data, actual)
+  const day = getDay(data, actual)
 
   if (data === {}) return (<></>)
 
