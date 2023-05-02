@@ -1,5 +1,16 @@
 import { fabric } from 'fabric'
 
+async function Init(obj, canvas) {
+    // // update position
+    if (obj.get('top') > window.innerHeight)
+    {
+        obj.vy = Math.random() * 10 + 2
+        obj.set({left: Math.floor(Math.random() * canvas.width) - 50, top: -100})
+    }
+    else
+    obj.set({top: obj.get('top') + obj.vy})
+}
+
 function Anim() {
 
     let canvas = new fabric.StaticCanvas('c', {
@@ -16,15 +27,8 @@ function Anim() {
     
     // update velocity
     canvas.getObjects().forEach((obj) => {
-        
         // // update position
-        if (obj.get('top') > window.innerHeight)
-        {
-        obj.vy = Math.random() * 10 + 2
-        obj.set({left: Math.floor(Math.random() * canvas.width) - 50, top: -100})
-        }
-        else
-        obj.set({top: obj.get('top') + obj.vy})
+        Init(obj, canvas)
     })
     fabric.util.requestAnimFrame(update)
     canvas.renderAll()
