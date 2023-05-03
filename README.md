@@ -4,9 +4,9 @@
 
 ## Project
 
-Ce projet à pour but d'utiliser github codespace et de lancer un site web rapidement
+Ce projet à pour but d'utiliser github codespace et CloudFlare Pages
 
-Utiliser l'API (franch gouv) et manipuler les Dates Javascript
+Utiliser l'API (french gouv) et manipuler les Dates Javascript
 
 Faire une petite Animation en Javascript
 
